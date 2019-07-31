@@ -68,8 +68,9 @@ class App extends Component {
   render() {
     let {image} = this.state;
     let $imageUrl = null;
+
     if (image) {
-      $imageUrl = (<img src={image} className="border border-primary"  style={{'height' : `${this.state.height}px`, 'width' : `${this.state.width}px`, 'object-fit': 'none'}} alt="preview" />);
+      $imageUrl = (<img src={image} className="border border-primary"  style={{'height' : `${this.state.height}px`, 'width' : `${this.state.width}px`, objectFit: 'none'}} alt="preview" />);
     } else {
       $imageUrl = (<div className="d-flex justify-content-center align-items-center border" style={{'height' : `${this.state.height}px`, 'width' : `${this.state.width}px`}}><span>Image Preview</span></div>);
     }
@@ -80,15 +81,22 @@ class App extends Component {
                     onChangeWidth={(val) => this.onChangeWidth(val)}
                     onChangeImage={(val) => this.onChangeImage(val)}
                     onResetImage={() => this.onResetImage()}
+                    onSaveImage={() => this.saveImage(this.state.image)}
         />
 
         <div className="p-2">
           <ReactToPrint
               trigger={() => <button className="btn btn-primary">Print!</button>}
-              content={() => this.myRef}
+              content={() => this.savedImageRef}
             />
-          <div className="mt-3" ref={el => (this.myRef = el)}>
-            {$imageUrl}
+          
+          <div style={{display: 'inline'}}>
+            <div className="mt-3" style={{position: 'absolute'}} ref={el => (this.savedImageRef = el)}>
+              <img src="http://lorempixel.com/800/100/cats/" className="border border-primary"  style={{'height' : `${this.state.height}px`, 'width' : `${this.state.width}px`, objectFit: 'none'}} alt="saved_image" />
+            </div>
+            <div className="mt-3" style={{position: 'absolute', backgroundColor: 'white'}}>
+              {$imageUrl}
+            </div>
           </div>
         </div>
       </div>

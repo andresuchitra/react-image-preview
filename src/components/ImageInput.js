@@ -21,7 +21,6 @@ export default class ImageInput extends Component {
                 //emit to parent to set the preview div
                 this.props.onChangeImage(e)
             }
-
         }
         else this.resetStateFile()
     }
@@ -48,6 +47,9 @@ export default class ImageInput extends Component {
                                 <label className="custom-file-label">{this.state.file}</label>
                             </div>
                         </div>
+                    </div>
+                    <div className="mr-2">
+                        <button className="btn btn-primary" onClick={this.props.onSaveImage}>Save</button>
                     </div>
                     <div className="mr-2">
                         <button className="btn btn-danger" onClick={this.resetImage}>Reset</button>
