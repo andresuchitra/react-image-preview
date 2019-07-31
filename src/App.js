@@ -27,10 +27,9 @@ class App extends Component {
         image: reader.result
       });
     }
-
-    console.log(file)
     reader.readAsDataURL(file)
   }
+
   onChangeHeight = (newVal) => {
     if(newVal) {
         newVal = Number(newVal)
@@ -55,6 +54,12 @@ class App extends Component {
     this.setState({width: newVal})
   }
 
+  onResetImage = () => {
+    this.setState({
+      file: '',
+      image: null
+    });
+  }
 
   saveImage = (imageFile) => {
     return Promise.resolve("http://lorempixel.com/800/100/cats/");
@@ -74,6 +79,7 @@ class App extends Component {
         <ImageInput onChangeHeight={(val) => this.onChangeHeight(val)} 
                     onChangeWidth={(val) => this.onChangeWidth(val)}
                     onChangeImage={(val) => this.onChangeImage(val)}
+                    onResetImage={() => this.onResetImage()}
         />
 
         <div className="p-2">
