@@ -28,6 +28,7 @@ class App extends Component {
       });
     }
 
+    console.log(file)
     reader.readAsDataURL(file)
   }
   onChangeHeight = (newVal) => {
